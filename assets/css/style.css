@@ -1,0 +1,54 @@
+.img-fluid {
+    overflow: hidden;
+    /* max-width: 140px;
+    height:auto; */
+    border: 3pt solid whitesmoke;
+    
+};
+
+body, html {
+    height: 100%;
+}
+
+#page-header{
+    color: whitesmoke;
+}
+
+.bg {
+/* The image used */
+background-image: url("../images/wakanda.jpg");
+
+/* Full height */
+height: 100%;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+#fight-narrator{
+    color: yellow;
+    background-color: black;
+}
+
+
+.character-hp {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    color: whitesmoke;
+    background-color: black;
+    /* transform: translate(-50%, 0%); */
+}
+  
+
+.character-name {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    color: whitesmoke;
+    background-color: black;
+    /* transform: translate(-50%, 0%); */
+}
+  

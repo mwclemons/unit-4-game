@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RPG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+</head>
+<body class="bg">
+    <div class="container">
+            
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center" id="page-header">
+                    RPG - Black Panther
+                </h1>
+            </div>
+        </div>
+        <br>
+        <div class="row text-center">
+            <div class="col-12" id="fight-narrator">
+                Please choose your fighter!!
+            </div>
+        </div>
+        <br>
+   
+        <div class="row text-center" id="available-characters">
+            <div class="col-2"></div>
+            <div class="col-2 game-fighter" id="choice0">
+                <div class="bottom-left">TEST</div>
+            </div>
+            <div class="col-2 game-fighter" id="choice1"></div>
+            <div class="col-2 game-fighter" id="choice2"></div>
+            <div class="col-2 game-fighter" id="choice3"></div>
+            <div class="col-2"></div>
+        </div>
+        <br>
+
+        <div class="row text-center" id="fight-arena">
+            <div class="col-1"></div>
+            <div class="col-2" id="your-character">
+            </div>
+            <div class="col-2" id="opponent-character">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-3"></div>
+            <div class="col-2">
+                <div id="remaining-title"></div>
+                <div id="remaining0"></div>
+                <br>
+                <div id="remaining1"></div>
+                <br>
+                <div id="remaining2"></div>
+            </div>
+        </div>
+        <br>
+
+        
+    </div>
+
+    <script>
+        var fighters = [
+            {fighterName: "Black Panther", fighterImage: "assets/images/blackpanther.jpg", hp: 300, attack: 20, counter: 20},
+            {fighterName: "Killmonger", fighterImage: "assets/images/killmonger.jpg", hp: 250, attack: 40, counter: 35},
+            {fighterName: "Okoye", fighterImage: "assets/images/okoye.jpg", hp: 300, attack: 25, counter: 30},
+            {fighterName: "Mbaku", fighterImage: "assets/images/mbaku.jpg", hp: 450, attack: 10, counter: 50}
+        ];
+
+        function initializeGame() {
+            for (var i =0; i<fighters.length;i++){
+                updateCharacter("#choice"+i, i);
+             };
+        };
+
+        function updateCharacter (myDiv,myFighterID){
+            $(myDiv).html('<img src="'+fighters[myFighterID].fighterImage+'" class="img-fluid rounded">');
+            $(myDiv).append('<div class="character-name">'+fighters[myFighterID].fighterName+'</div>');
+            $(myDiv).append('<div class="character-hp">'+fighters[myFighterID].hp+'</div>');
+        };
+
+        
+        $(document).ready(function() {
+            var playerCharacter = null;
+            var opponentCharacter = null;
+            var remainingOpponents = [];
+            
+            initializeGame();
+           
+            $(".game-fighter").on("click", function() {
+                if (playerCharacter === null) {
+                    playerCharacter = this.id.charAt(6);
+                    $("#available-characters").empty();
+                    updateCharacter("#your-character",playerCharacter);
+                    $("#fight-narrator").text("Please choose your 1st opponent!!");
+                    var remaining = 0;
+                    for (var i =0; i<fighters.length; i++){
+                        if (!(i==playerCharacter)){
+                            updateCharacter("#remaining"+remaining,i);
+                            console.log("#remaining"+remaining)
+                            // $("#remaining"+remaining).html('<img src="'+fighters[i].fighterImage+'" class="img-fluid rounded">');
+                            remainingOpponents[remaining]=i;
+                            remaining++;
+                        };
+                        
+                    };
+                };
+            });
+
+        });
+    </script>
+
+
+
+    <script src="assets/javascript/game.js"></script>
+</body>
+</html>
