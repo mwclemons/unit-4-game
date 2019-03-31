@@ -13,8 +13,10 @@ $(document).ready(function() {
     
     $(".game-fighter").on("click", function() {
         if (playerCharacter === null) {
+            
             var thisDivID = this.id;
             var thisDiv = $("#"+thisDivID).detach();
+            
             $("#your-character").append(thisDiv);
             playerCharacter = parseInt(thisDivID.charAt(6));
             
@@ -28,11 +30,13 @@ $(document).ready(function() {
             $("#remaining-title").css("visibility", "visible");
         } else if (opponentCharacter === null) {
             var thisDivID = this.id;
-            var thisDiv = $("#"+thisDivID).detach();
-            $("#opponent-character").append(thisDiv);
-            opponentCharacter = parseInt(thisDivID.charAt(6));
-            $("#fight-narrator").text("Attack your opponent!!");
-            $("#attack-button").css("visibility", "visible");
+            if (parseInt(thisDivID.charAt(6)) !== playerCharacter) {
+                var thisDiv = $("#"+thisDivID).detach();
+                $("#opponent-character").append(thisDiv);
+                opponentCharacter = parseInt(thisDivID.charAt(6));
+                $("#fight-narrator").text("Attack your opponent!!");
+                $("#attack-button").css("visibility", "visible");
+            }
         }
     });
 
